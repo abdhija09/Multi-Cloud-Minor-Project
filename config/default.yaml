@@ -1,0 +1,5 @@
+rs: {max_k: 16, max_m: 8, chunk_sizes_kb: [256, 512, 1024, 2048, 4096, 8192], field_poly: 0x11D}
+oracle: {mc_runs: 10000, mc_seed: 7}
+search: {pop_size: 50, generations: 40, mutation_rate: 0.05, crossover_rate: 0.9}
+adaptation: {beta: 0.3, epsilon: 0.10, epoch_seconds: 3600}
+stats: {repeats: 10, base_seed: 42, alpha: 0.05}

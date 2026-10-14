@@ -1,0 +1,3 @@
+regime,profiles_deployed,stripes_decoded,roundtrip_passes,hash_mismatches,source
+high,"k=2,m=1,c=256KB",108,108,0,R2_high
+all,"k=4,m=2,c=1024KB",16,16,0,R4_fixed
