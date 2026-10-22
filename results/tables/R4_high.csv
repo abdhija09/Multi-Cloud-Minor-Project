@@ -1,0 +1,4 @@
+strategy,"profile (k,m,c) x repeats",fleet_availability,nines,storage_overhead,bytes_repaired,mean_repair_latency_ms,overhead_vs_fixed_pct,availability_vs_fixed_pct,oracle_availability_exact,oracle_nines
+"Fixed RS(4,2) 1MB","(4,2,1024KB) x10",1.000000 ± 0.000000,>=3.0 nines (sim limit),1.5000 ± 0.0000,12163482 ± 7544276,109.94 ± 4.59,+0.0%,+0.0%,infeasible (k+m > n CSPs),n/a
+Greedy (avail_floor=0.999),"(1,0,256KB) x10",0.999600 ± 0.000369,3.4 nines,1.0000 ± 0.0000,0 ± 0,nan ± nan,-33.3%,-0.0%,0.9993621,3.2 nines
+NSGA-II knee,"(2,1,256KB) x10",1.000000 ± 0.000000,>=3.0 nines (sim limit),1.5000 ± 0.0000,786432 ± 405104,55.14 ± 2.49,+0.0%,+0.0%,0.9999993,6.1 nines

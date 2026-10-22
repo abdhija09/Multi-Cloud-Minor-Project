@@ -1,0 +1,31 @@
+experiments:
+  E1:
+    name: "exact_pareto_front"
+    regimes: ["low", "medium", "high"]
+    stripes: 1
+    repeats: 10
+  E2:
+    name: "metaheuristic_comparison"
+    regimes: ["low", "medium", "high"]
+    stripes: 1
+    repeats: 10
+  E3:
+    name: "sensitivity_analysis"
+    regimes: ["low", "medium", "high"]
+    stripes: 1
+    repeats: 10
+  E4:
+    name: "fleet_simulation_static"
+    regimes: ["low", "medium", "high"]
+    stripes: 1000
+    repeats: 10
+  E5:
+    name: "dynamic_adaptation"
+    regimes: ["low", "medium", "high"]
+    stripes: 1000
+    repeats: 10
+  E6:
+    name: "roundtrip_verification"
+    regimes: ["low", "medium", "high"]
+    stripes: 1000
+    repeats: 10

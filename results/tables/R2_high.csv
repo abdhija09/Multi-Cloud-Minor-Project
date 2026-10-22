@@ -1,0 +1,2 @@
+regime,n,n_nondominated,k_knee,m_knee,chunk_kb_knee,A_knee,nines,overhead,repair_bw_bytes
+high,4,4,2,1,256,1.0,>=4.0 nines (MC limit),0.5,524288.0

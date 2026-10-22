@@ -1,0 +1,16 @@
+metric,scope,n,mean,max,unit
+nsga2_wall_clock_s,low,2,4.851875349999773,4.8639469999998255,s
+nsga2_wall_clock_s,medium,2,5.070454250000239,5.137099300000045,s
+nsga2_wall_clock_s,high,2,7.168419950000043,7.38668349999989,s
+nsga2_wall_clock_s,all regimes,6,5.696916516666685,7.38668349999989,s
+peak_rss_sampled_during_nsga2,process,6,,136.2734375,MiB
+peak_rss_ru_maxrss,process lifetime,1,,136.28125,MiB
+disk_per_run_dir,experiments/runs/E0,3,0.8974609375,1.0029296875,KiB
+disk_per_run_dir,experiments/runs/E1,3,0.7132161458333334,0.7578125,KiB
+disk_per_run_dir,experiments/runs/E3,30,0.710546875,0.7685546875,KiB
+disk_per_run_dir,experiments/runs/E4,30,0.9391927083333333,1.0234375,KiB
+disk_per_run_dir,experiments/runs/E5,10,4.4759765625,5.0185546875,KiB
+disk_per_run_dir,experiments/runs/E6,7,0.6614118303571429,0.69921875,KiB
+disk_per_run_dir,experiments/runs/R1,1,1.66796875,1.66796875,KiB
+disk_per_run_dir,experiments/runs/R6,1,1.296875,1.296875,KiB
+cuda_device,"torch not installed, CPU-only by construction",1,,0.0,bool
