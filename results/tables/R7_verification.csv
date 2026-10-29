@@ -1,3 +1,14 @@
+<<<<<<< HEAD
 regime,profiles_deployed,stripes_decoded,roundtrip_passes,hash_mismatches,source
 high,"k=2,m=1,c=256KB",108,108,0,R2_high
 all,"k=4,m=2,c=1024KB",16,16,0,R4_fixed
+=======
+regime,profiles_deployed,stripes_decoded,roundtrip_passes,hash_mismatches,source,corpus,bytes_verified,coverage
+high,"(2,1,256KB)",411,411,0,R2 knee,Silesia (data\silesia),211938580,full (every byte of every file)
+low,"(2,2,256KB)",411,411,0,R2 knee,Silesia (data\silesia),211938580,full (every byte of every file)
+medium,"(2,1,256KB)",411,411,0,R2 knee,Silesia (data\silesia),211938580,full (every byte of every file)
+high,"(1,0,256KB), (2,1,256KB), (4,2,1024KB)",1283,1283,0,R4 strategies,Silesia (data\silesia),635815740,full (every byte of every file)
+low,"(2,2,256KB), (3,3,256KB), (4,2,256KB), (4,2,1024KB), (5,3,256KB)",1117,1117,0,R4 strategies,Silesia (data\silesia),1059692900,full (every byte of every file)
+medium,"(2,1,256KB), (4,2,1024KB), (5,1,256KB)",636,636,0,R4 strategies,Silesia (data\silesia),635815740,full (every byte of every file)
+medium,"(2,1,256KB), (2,2,256KB)",822,822,0,R5 static+adaptive,Silesia (data\silesia),423877160,full (every byte of every file)
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794

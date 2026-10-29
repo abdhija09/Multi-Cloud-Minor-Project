@@ -22,6 +22,7 @@ def igd(front: ParetoFront, true_front: ParetoFront) -> float:
     ind = IGD(true_front.objective_vectors)
     return ind(front.objective_vectors)
 
+<<<<<<< HEAD
 def spacing(front: ParetoFront) -> float:
     """
     Schott's spacing metric.
@@ -31,6 +32,29 @@ def spacing(front: ParetoFront) -> float:
     if len(obj) < 2:
         return 0.0
         
+=======
+def spacing(front: ParetoFront, bounds=None) -> float:
+    """
+    Schott's spacing metric.
+    Measures the standard deviation of distances to nearest neighbors in objective space.
+
+    bounds : optional (ideal, nadir) pair of arrays. When given, each objective
+    is min-max normalised with them first, so a column with large units
+    (k*chunk_size in KB) does not swamp the others. Columns where
+    nadir == ideal are left un-scaled (divided by 1).
+    """
+    obj = np.asarray(front.objective_vectors, dtype=float)
+    if len(obj) < 2:
+        return 0.0
+
+    if bounds is not None:
+        ideal = np.asarray(bounds[0], dtype=float)
+        nadir = np.asarray(bounds[1], dtype=float)
+        span = nadir - ideal
+        span[span == 0] = 1.0
+        obj = (obj - ideal) / span
+
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
     # Compute L1 distance between all pairs
     # shape: (N, N)
     diff = obj[:, np.newaxis, :] - obj[np.newaxis, :, :]
@@ -51,6 +75,7 @@ def spacing(front: ParetoFront) -> float:
     S = np.sqrt(sum_diff / (len(obj) - 1))
     return float(S)
 
+<<<<<<< HEAD
 def nines(p: float) -> str:
     """
     Convert availability probability to 'nines' string.
@@ -58,6 +83,19 @@ def nines(p: float) -> str:
     """
     if p >= 1.0:
         return "inf nines"
+=======
+def nines(p: float, mc_runs: int = 10000) -> str:
+    """
+    Convert availability probability to 'nines' string.
+    E.g., 0.99999 -> "5 nines"
+
+    p == 1.0 comes from a Monte Carlo estimate with zero observed failures, so
+    the true value is only known to be beyond the MC resolution of 1/mc_runs.
+    That case reports the bound, e.g. ">=4.0 nines (MC limit)" for 10000 runs.
+    """
+    if p >= 1.0:
+        return f">={np.log10(mc_runs):.1f} nines (MC limit)"
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
     if p <= 0.0:
         return "0 nines"
         

@@ -1,4 +1,10 @@
 regimes:
+<<<<<<< HEAD
   low:    {csp_count: 8, failure_prob_range: [1e-2, 1e-1]}
   medium: {csp_count: 6, failure_prob_range: [1e-3, 1e-2]}
   high:   {csp_count: 4, failure_prob_range: [1e-4, 1e-3]}
+=======
+  low:    {csp_count: 8, failure_prob_range: [1.0e-2, 1.0e-1]}
+  medium: {csp_count: 6, failure_prob_range: [1.0e-3, 1.0e-2]}
+  high:   {csp_count: 4, failure_prob_range: [1.0e-4, 1.0e-3]}
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794

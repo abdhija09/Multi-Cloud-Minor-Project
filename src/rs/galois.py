@@ -21,6 +21,11 @@ def build_tables(prim=0x11D):
     for i in range(255, 512):
         EXP_TABLE[i] = EXP_TABLE[i - 255]
 
+<<<<<<< HEAD
+=======
+    return EXP_TABLE, LOG_TABLE
+
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
 build_tables(0x11D)
 
 def gf_mul(a: int, b: int) -> int:
@@ -35,6 +40,7 @@ def gf_div(a: int, b: int) -> int:
         return 0
     if b == 0:
         raise ZeroDivisionError("GF(2^8) division by zero")
+<<<<<<< HEAD
     return int(EXP_TABLE[(LOG_TABLE[a] - LOG_TABLE[b]) % 255])
 
 def gf_pow(a: int, e: int) -> int:
@@ -42,12 +48,31 @@ def gf_pow(a: int, e: int) -> int:
     if a == 0:
         return 0
     return int(EXP_TABLE[(LOG_TABLE[a] * e) % 255])
+=======
+    # int() casts: LOG_TABLE is uint16, so a negative difference would wrap.
+    return int(EXP_TABLE[(int(LOG_TABLE[a]) - int(LOG_TABLE[b])) % 255])
+
+def gf_pow(a: int, e: int) -> int:
+    """Exponentiate a field element. a**0 == 1 (incl. 0**0); negative e uses the inverse."""
+    if e == 0:
+        return 1
+    if a == 0:
+        if e < 0:
+            raise ZeroDivisionError("GF(2^8) zero raised to a negative power")
+        return 0
+    # Python int arithmetic avoids uint16 overflow; % 255 handles negative e.
+    return int(EXP_TABLE[(int(LOG_TABLE[a]) * e) % 255])
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
 
 def gf_inv(a: int) -> int:
     """Compute the multiplicative inverse of a field element."""
     if a == 0:
         raise ZeroDivisionError("GF(2^8) inversion of zero")
+<<<<<<< HEAD
     return int(EXP_TABLE[255 - LOG_TABLE[a]])
+=======
+    return int(EXP_TABLE[255 - int(LOG_TABLE[a])])
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
 
 def gf_mul_vec(a: np.ndarray, b: int) -> np.ndarray:
     """Multiply a vector of field elements by a scalar element."""

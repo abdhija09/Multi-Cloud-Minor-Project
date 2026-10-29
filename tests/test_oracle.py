@@ -15,22 +15,50 @@ from rs.stripe import Stripe
 
 def test_mc_vs_closed_form():
     """
+<<<<<<< HEAD
     For k+m <= 10 and three random availability vectors,
     assert |MC - closed_form| <= 2*SE for all (k,m).
 
     Note: When SE is 0 (all samples survived in MC) or for boundary conditions,
     a small numerical floor (1e-3) is applied to handle zero-variance edges.
     """
+=======
+    For k+m <= 10 and three random availability vectors, check
+    |MC - closed_form| <= 2*SE (spec tolerance, no floor) with fixed seeds.
+
+    How the check is applied:
+    - Unsaturated cells (0 < p_hat < 1, SE > 0): 2*SE is a ~95.4% interval per
+      cell, so across ~130 independent cells about 4.6% are *expected* to fall
+      outside it even for a correct estimator. Requiring every cell to pass
+      would only be achievable by hunting for lucky seeds. Instead the test
+      keeps the 2*SE tolerance per cell exactly as specified and asserts that
+      the number of violations is consistent with that nominal coverage
+      (at most the 99th percentile of Binomial(n_cells, P(|Z| > 2))).
+      A biased estimator would blow far past that count.
+    - Saturated cells (p_hat exactly 0 or 1, so SE == 0): the MC saw no failure
+      (or no success) in n_runs trials, so it cannot resolve the true value
+      below 1/n_runs. For these cells we require |diff| <= 1/n_runs.
+    """
+    from scipy.stats import binom, norm
+
+    n_runs = 10000
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
     rng = np.random.default_rng(42)
     # Three random availability vectors of length 10
     avail_vectors = [rng.uniform(0.70, 0.95, size=10) for _ in range(3)]
 
+<<<<<<< HEAD
+=======
+    n_unsat = 0
+    violations = []
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
     for avail in avail_vectors:
         for k in range(1, 10):
             for m in range(0, 11 - k):
                 avail_sub = avail[: k + m]
                 cf = closed_form_availability(k, m, avail_sub)
                 mc_val, se = monte_carlo_availability(
+<<<<<<< HEAD
                     k, m, avail_sub, n_runs=10000, seed=42 + k * 10 + m
                 )
 
@@ -40,6 +68,30 @@ def test_mc_vs_closed_form():
                     f"MC estimate {mc_val} deviated from closed-form {cf} by {diff} "
                     f"(bound {tolerance}, SE {se}) for k={k}, m={m}"
                 )
+=======
+                    k, m, avail_sub, n_runs=n_runs, seed=42 + k * 10 + m
+                )
+                diff = abs(mc_val - cf)
+
+                if se == 0.0:
+                    assert mc_val in (0.0, 1.0)
+                    assert diff <= 1.0 / n_runs, (
+                        f"Saturated MC {mc_val} vs closed-form {cf}: diff {diff} "
+                        f"exceeds MC resolution 1/{n_runs} for k={k}, m={m}"
+                    )
+                    continue
+
+                n_unsat += 1
+                if diff > 2.0 * se:
+                    violations.append((k, m, diff / se))
+
+    p_outside = 2.0 * norm.sf(2.0)
+    max_allowed = int(binom.ppf(0.99, n_unsat, p_outside))
+    assert len(violations) <= max_allowed, (
+        f"{len(violations)} of {n_unsat} cells outside 2*SE "
+        f"(expected ~{n_unsat * p_outside:.1f}, allowed {max_allowed}): {violations}"
+    )
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
 
 
 def test_se_bound_at_10000_runs():
@@ -131,6 +183,11 @@ def test_fit_availability_wrapper():
 
     df = pd.DataFrame({"node_id": [1, 2], "failures": [0, 1]})
     with patch("utils.traces.fit_failure_rates", return_value=np.array([0.05, 0.02])) as mock_fit:
+<<<<<<< HEAD
         res = fit_availability(df)
         mock_fit.assert_called_once_with(df)
+=======
+        res = fit_availability(df, n_csps=2)
+        mock_fit.assert_called_once_with(df, 2)
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
         assert np.array_equal(res, np.array([0.05, 0.02]))

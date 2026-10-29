@@ -47,5 +47,33 @@ def test_spacing():
 def test_nines():
     assert nines(0.99999) == "5 nines"
     assert nines(0.99) == "2 nines"
+<<<<<<< HEAD
     assert nines(1.0) == "inf nines"
     assert nines(0.0) == "0 nines"
+=======
+    # A == 1.0 is an MC estimate with zero failures: report the resolution bound
+    assert nines(1.0) == ">=4.0 nines (MC limit)"
+    assert nines(1.0, mc_runs=100000) == ">=5.0 nines (MC limit)"
+    assert nines(0.0) == "0 nines"
+
+
+def test_spacing_normalised():
+    # With bounds, spacing equals the raw spacing of the pre-normalised front,
+    # and is invariant to rescaling any one objective column (e.g. KB vs bytes).
+    rng = np.random.default_rng(0)
+    obj = rng.uniform(0.0, 1.0, size=(6, 3))
+    obj[:, 2] *= 1e6  # large-unit column that would swamp raw spacing
+    ideal, nadir = obj.min(axis=0), obj.max(axis=0)
+    front = ParetoFront(points=np.empty((6, 3)), objective_vectors=obj)
+
+    pre_norm = ParetoFront(points=np.empty((6, 3)),
+                           objective_vectors=(obj - ideal) / (nadir - ideal))
+    assert np.isclose(spacing(front, bounds=(ideal, nadir)), spacing(pre_norm))
+
+    scale = np.array([1.0, 1.0, 1024.0])
+    scaled = ParetoFront(points=np.empty((6, 3)), objective_vectors=obj * scale)
+    assert np.isclose(spacing(scaled, bounds=(ideal * scale, nadir * scale)),
+                      spacing(front, bounds=(ideal, nadir)))
+    # Raw spacing is not scale invariant: the KB column dominates it
+    assert not np.isclose(spacing(scaled), spacing(front))
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794

@@ -1,2 +1,6 @@
 regime,n,n_nondominated,k_knee,m_knee,chunk_kb_knee,A_knee,nines,overhead,repair_bw_bytes
+<<<<<<< HEAD
 medium,6,7,2,1,256,0.9998,3.7 nines,0.5,524288.0
+=======
+medium,6,6,2,1,256,0.9999,4 nines,0.5,524288.0
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794

@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 strategy,fleet_availability,nines,storage_overhead,bytes_repaired,mean_repair_latency_ms,overhead_vs_fixed_pct,availability_vs_fixed_pct
 "Fixed RS(4,2) 1MB",0.997500 ± 0.001131,2.6 nines,1.5000 ± 0.0000,1293523354 ± 189611625,150.51 ± 0.52,+0.0%,+0.0%
 Greedy (avail_floor=0.999),0.998600 ± 0.001315,2.9 nines,1.5600 ± 0.0369,457100493 ± 118965574,173.17 ± 14.21,+4.0%,+0.1%
 NSGA-II knee,0.995600 ± 0.001659,2.4 nines,1.6500 ± 0.1728,62311629 ± 18973065,63.41 ± 13.70,+10.0%,-0.2%
+=======
+strategy,"profile (k,m,c) x repeats",fleet_availability,nines,storage_overhead,bytes_repaired,mean_repair_latency_ms,overhead_vs_fixed_pct,availability_vs_fixed_pct,oracle_availability_exact,oracle_nines
+"Fixed RS(4,2) 1MB","(4,2,1024KB) x10",0.997700 ± 0.001392,2.6 nines,1.5000 ± 0.0000,1197473792 ± 125135642,150.13 ± 0.92,+0.0%,+0.0%,0.9976782,2.6 nines
+Greedy (avail_floor=0.999),"(5,3,256KB) x6, (4,2,256KB) x4",0.999000 ± 0.000892,3.0 nines,1.5600 ± 0.0369,435945472 ± 109005166,172.61 ± 13.78,+4.0%,+0.1%,0.9992170,3.1 nines
+NSGA-II knee,"(3,3,256KB) x6, (2,2,256KB) x4",0.999600 ± 0.000603,3.4 nines,2.0000 ± 0.0000,179725926 ± 55033643,98.63 ± 12.99,+33.3%,+0.2%,0.9998208,3.7 nines
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794

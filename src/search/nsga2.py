@@ -5,11 +5,39 @@ from pymoo.operators.sampling.rnd import IntegerRandomSampling
 from pymoo.operators.crossover.sbx import SBX
 from pymoo.operators.mutation.pm import PM
 from pymoo.operators.repair.rounding import RoundingRepair
+<<<<<<< HEAD
+=======
+from pymoo.core.repair import Repair
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
 from pymoo.optimize import minimize
 
 from search.base import ParetoFront, Problem, SearchAlgorithm
 
 
+<<<<<<< HEAD
+=======
+class _ProfileRepair(Repair):
+    """
+    Map every candidate to a feasible integer (k, m, c_idx) before evaluation,
+    so the decision vectors kept by pymoo (res.X, history) are exactly the
+    profiles whose objectives are stored in res.F.
+
+    Steps: round to int, clip to [xl, xu], then with n = n_csps:
+    if k > n set k = n; if k + m > n set m = max(0, n - k).
+    """
+
+    def _do(self, problem, X, **kwargs):
+        n = problem._problem.n_csps
+        X = np.rint(np.asarray(X, dtype=float)).astype(int)
+        X = np.clip(X, problem.xl.astype(int), problem.xu.astype(int))
+        k = np.minimum(X[:, 0], n)
+        m = np.where(k + X[:, 1] > n, np.maximum(0, n - k), X[:, 1])
+        X[:, 0] = k
+        X[:, 1] = m
+        return X
+
+
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
 class _PymooProblemWrapper(ElementwiseProblem):
     def __init__(self, problem: Problem):
         self._problem = problem
@@ -27,6 +55,7 @@ class _PymooProblemWrapper(ElementwiseProblem):
         )
         
     def _evaluate(self, x, out, *args, **kwargs):
+<<<<<<< HEAD
         k, m, c_idx = int(x[0]), int(x[1]), int(x[2])
         
         # Repair infeasible configurations
@@ -35,6 +64,10 @@ class _PymooProblemWrapper(ElementwiseProblem):
             # Update x so that returned solutions are consistent
             x[1] = m
             
+=======
+        # x has already been made feasible by _ProfileRepair
+        k, m, c_idx = int(x[0]), int(x[1]), int(x[2])
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
         obj = self._problem.evaluate(k, m, c_idx)
         out["F"] = obj
 
@@ -54,6 +87,10 @@ class NSGA2(SearchAlgorithm):
             sampling=IntegerRandomSampling(),
             crossover=SBX(prob=self.crossover_rate, eta=15, vtype=float, repair=RoundingRepair()),
             mutation=PM(prob=self.mutation_rate, eta=20, vtype=float, repair=RoundingRepair()),
+<<<<<<< HEAD
+=======
+            repair=_ProfileRepair(),
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
             eliminate_duplicates=True
         )
 

@@ -107,6 +107,7 @@ def monte_carlo_availability(
     return estimate, se
 
 
+<<<<<<< HEAD
 def fit_availability(failure_trace_df) -> np.ndarray:
     """
     Fit availability / failure rates from failure trace DataFrame.
@@ -115,3 +116,14 @@ def fit_availability(failure_trace_df) -> np.ndarray:
     """
     from utils.traces import fit_failure_rates
     return fit_failure_rates(failure_trace_df)
+=======
+def fit_availability(failure_trace_df, n_csps: int) -> np.ndarray:
+    """
+    Fit availability / failure rates from failure trace DataFrame.
+
+    Thin wrapper calling utils.traces.fit_failure_rates(df, n_csps).
+    n_csps is required (no default) so it always matches the regime's CSP count.
+    """
+    from utils.traces import fit_failure_rates
+    return fit_failure_rates(failure_trace_df, n_csps)
+>>>>>>> 0808679dfd75aa9d19055fdcb55817ed73b00794
