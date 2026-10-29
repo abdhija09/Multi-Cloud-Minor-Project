@@ -1,0 +1,10 @@
+regime,target,fixed_profile,adaptive_profile,fixed_overhead,adaptive_overhead,fixed_storage,adaptive_storage,saved_pct
+low,99.9%,"RS(4,2) below target (3.0 nines)","RS(5,3) [A=0.999887, 3.9 nines]",0.500,0.600,1.500,1.600,n/a (fixed misses target)
+low,99.99%,"RS(4,2) below target (3.0 nines)","RS(4,3) [A=0.999937, 4.2 nines]",0.500,0.750,1.500,1.750,n/a (fixed misses target)
+low,99.999%,"RS(4,2) below target (3.0 nines)","RS(4,4) [A=0.999997, 5.5 nines]",0.500,1.000,1.500,2.000,n/a (fixed misses target)
+medium,99.9%,"RS(4,2)","RS(5,1) [A=0.999669, 3.5 nines]",0.500,0.200,1.500,1.200,20.0%
+medium,99.99%,"RS(4,2)","RS(2,1) [A=0.999910, 4.0 nines]",0.500,0.500,1.500,1.500,0.0%
+medium,99.999%,"RS(4,2)","RS(4,2) [A=0.999998, 5.7 nines]",0.500,0.500,1.500,1.500,0.0%
+high,99.9%,"RS(4,2) infeasible (needs 6 CSPs, 4 available)","RS(1,0) [A=0.999261, 3.1 nines]",,0.000,,1.000,n/a (fixed infeasible)
+high,99.99%,"RS(4,2) infeasible (needs 6 CSPs, 4 available)","RS(3,1) [A=0.999998, 5.7 nines]",,0.333,,1.333,n/a (fixed infeasible)
+high,99.999%,"RS(4,2) infeasible (needs 6 CSPs, 4 available)","RS(3,1) [A=0.999998, 5.7 nines]",,0.333,,1.333,n/a (fixed infeasible)

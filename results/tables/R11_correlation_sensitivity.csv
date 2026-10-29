@@ -1,0 +1,10 @@
+regime,scenario,model,fixed_avail,adaptive_profile,adaptive_avail,fixed_overhead,adaptive_overhead,fixed_repair_mb,adaptive_repair_mb
+low,Independent failures,no shock,"0.99889 [0.99873, 0.99903]","RS(2,2)","0.99984 [0.99977, 0.99989]",0.500,1.000,4.00,0.50
+low,Moderate common-cause,shock p=1e-3 kills 2 CSPs,"0.99879 [0.99863, 0.99894]","RS(2,2)","0.99982 [0.99975, 0.99987]",0.500,1.000,4.00,0.50
+low,Severe common-cause,shock p=1e-2 kills 4 of 8 CSPs,"0.99050 [0.99007, 0.99092]","RS(2,2)","0.99699 [0.99673, 0.99722]",0.500,1.000,4.00,0.50
+medium,Independent failures,no shock,"1.00000 [0.99998, 1.00000]","RS(2,1)","0.99993 [0.99988, 0.99996]",0.500,0.500,4.00,0.50
+medium,Moderate common-cause,shock p=1e-3 kills 2 CSPs,"0.99998 [0.99995, 0.99999]","RS(2,1)","0.99971 [0.99963, 0.99978]",0.500,0.500,4.00,0.50
+medium,Severe common-cause,shock p=1e-2 kills 3 of 6 CSPs,"0.98975 [0.98930, 0.99018]","RS(2,1)","0.99475 [0.99443, 0.99506]",0.500,0.500,4.00,0.50
+high,Independent failures,no shock,infeasible,"RS(2,1)","1.00000 [0.99998, 1.00000]",,0.500,,0.50
+high,Moderate common-cause,shock p=1e-3 kills 2 CSPs,infeasible,"RS(2,1)","0.99955 [0.99944, 0.99963]",,0.500,,0.50
+high,Severe common-cause,shock p=1e-2 kills 2 of 4 CSPs,infeasible,"RS(2,1)","0.99482 [0.99450, 0.99513]",,0.500,,0.50
