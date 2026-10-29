@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # rs-adaptive: Self-Adaptive Reed–Solomon (k, m) Parameter Selection for Multi-Cloud Encrypted Storage using NSGA-II
 
 rs-adaptive is a research framework for dynamic multi-objective optimization of Reed–Solomon erasure coding parameters (k, m) across heterogeneous multi-cloud storage providers. By formulating parameter selection as a multi-objective optimization problem spanning availability, repair overhead, storage cost, and latency, the system leverages NSGA-II to discover Pareto-optimal configurations and employs an online adaptive controller to dynamically adjust striping regimes under shifting cloud provider failure rates and network conditions.
